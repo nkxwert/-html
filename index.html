@@ -539,6 +539,126 @@ body{font-family:var(--sans);background:var(--g1);color:var(--g7);
 /* 구분선 */
 .st-divider{margin:4px 16px 0;border:none;border-top:1px solid var(--g2);}
 
+/* ══════ RANKING BUTTON ══════ */
+.rank-btn{
+  width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA500);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;transition:var(--ease);
+  box-shadow:0 2px 8px rgba(255,165,0,.35);
+}
+.rank-btn:active{filter:brightness(.9);}
+
+/* ══════ RANKING SHEET ══════ */
+.rkbg{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.5);
+  backdrop-filter:blur(6px);display:flex;align-items:flex-end;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;}
+.rkbg.open{opacity:1;pointer-events:all;}
+.rksheet{background:var(--g0);width:100%;max-width:480px;margin:0 auto;
+  border-radius:var(--rx) var(--rx) 0 0;
+  transform:translateY(36px);transition:transform .26s cubic-bezier(.32,1.2,.6,1);
+  max-height:90vh;overflow-y:auto;
+  padding-bottom:calc(16px + var(--safe-b));}
+.rkbg.open .rksheet{transform:translateY(0);}
+.rk-handle{width:34px;height:4px;background:var(--g2);border-radius:100px;margin:10px auto 0;}
+.rk-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0;}
+.rk-title{font-size:16px;font-weight:900;}
+.rk-close{width:28px;height:28px;border-radius:50%;background:var(--g1);border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+/* 순위 헤더 배너 */
+.rk-banner{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
+  margin:12px 14px;border-radius:var(--rm);padding:14px;
+  display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;}
+.rk-banner::before{content:'🏆';position:absolute;right:-8px;bottom:-8px;
+  font-size:64px;opacity:.15;}
+.rk-banner-text h3{color:#FFD700;font-size:15px;font-weight:900;margin-bottom:2px;}
+.rk-banner-text p{color:rgba(255,255,255,.6);font-size:10.5px;}
+.rk-banner-icon{font-size:32px;}
+
+/* 내 점수 등록 버튼 */
+.rk-submit-row{padding:0 14px 10px;display:flex;gap:8px;}
+.rk-submit-btn{flex:1;padding:10px;background:linear-gradient(135deg,#FFD700,#FFA500);
+  border:none;border-radius:10px;font-size:13px;font-weight:800;
+  color:#1a1a2e;cursor:pointer;transition:var(--ease);}
+.rk-submit-btn:active{filter:brightness(.9);}
+.rk-refresh-btn{width:40px;height:40px;background:var(--g1);border:1.5px solid var(--g2);
+  border-radius:10px;font-size:16px;cursor:pointer;transition:var(--ease);
+  display:flex;align-items:center;justify-content:center;}
+.rk-refresh-btn:active{background:var(--g2);}
+.rk-refresh-btn.spinning{animation:spin .6s linear;}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* 순위 탭 */
+.rk-tabs{display:flex;background:var(--g1);border-radius:10px;margin:0 14px 10px;
+  border:1.5px solid var(--g2);overflow:hidden;}
+.rk-tab{flex:1;padding:8px;border:none;background:transparent;font-size:12px;font-weight:700;
+  color:var(--g5);cursor:pointer;transition:var(--ease);}
+.rk-tab.on{background:var(--g7);color:#fff;}
+
+/* 순위 리스트 */
+.rk-list{padding:0 14px;}
+.rk-item{display:flex;align-items:center;gap:10px;
+  background:var(--g0);border-radius:var(--rm);padding:10px 12px;
+  margin-bottom:6px;border:1.5px solid var(--g2);box-shadow:var(--sx);}
+.rk-item.top1{border-color:#FFD700;background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(255,165,0,.05));}
+.rk-item.top2{border-color:#C0C0C0;background:linear-gradient(135deg,rgba(192,192,192,.08),rgba(150,150,150,.05));}
+.rk-item.top3{border-color:#CD7F32;background:linear-gradient(135deg,rgba(205,127,50,.08),rgba(180,100,30,.05));}
+.rk-item.me{border-color:var(--blue);background:var(--dn2);}
+.rk-rank{font-family:var(--mono);font-size:15px;font-weight:700;width:28px;
+  text-align:center;flex-shrink:0;}
+.rk-rank.r1{color:#FFD700;}
+.rk-rank.r2{color:#C0C0C0;}
+.rk-rank.r3{color:#CD7F32;}
+.rk-avatar{width:36px;height:36px;border-radius:10px;background:var(--g1);
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  flex-shrink:0;border:1px solid var(--g2);}
+.rk-info{flex:1;min-width:0;}
+.rk-nick{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rk-sub{font-size:10px;color:var(--g4);margin-top:1px;}
+.rk-val{text-align:right;flex-shrink:0;}
+.rk-asset{font-family:var(--mono);font-size:12.5px;font-weight:600;}
+.rk-rate{font-size:10px;font-weight:700;margin-top:2px;}
+.rk-rate.pos{color:var(--up);}
+.rk-rate.neg{color:var(--dn);}
+
+/* 실시간 업데이트 표시 */
+.rk-live{display:flex;align-items:center;gap:6px;padding:0 14px 8px;font-size:10.5px;color:var(--g4);}
+.rk-live-dot{width:6px;height:6px;border-radius:50%;background:var(--ok);
+  animation:pulse-dot 1.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+/* 점수 등록 다이얼로그 */
+.rk-submit-dlg{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;padding:20px;}
+.rk-submit-dlg.open{opacity:1;pointer-events:all;}
+.rk-submit-card{background:var(--g0);border-radius:var(--rx);padding:24px 20px;
+  width:100%;max-width:340px;transform:scale(.95);transition:transform .26s cubic-bezier(.32,1.2,.6,1);}
+.rk-submit-dlg.open .rk-submit-card{transform:scale(1);}
+.rk-scard-title{font-size:18px;font-weight:900;margin-bottom:4px;}
+.rk-scard-sub{font-size:12px;color:var(--g5);margin-bottom:16px;}
+.rk-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.rk-stat-box{background:var(--g1);border-radius:var(--r);padding:10px;border:1.5px solid var(--g2);}
+.rk-stat-lbl{font-size:9.5px;color:var(--g5);}
+.rk-stat-val{font-family:var(--mono);font-size:13px;font-weight:700;margin-top:2px;}
+.rk-nick-inp{width:100%;background:var(--g1);border:2px solid var(--g2);
+  border-radius:var(--rm);padding:11px 12px;font-family:var(--sans);
+  font-size:14px;font-weight:600;outline:none;margin-bottom:12px;
+  transition:var(--ease);}
+.rk-nick-inp:focus{border-color:var(--blue);}
+.rk-scard-btns{display:flex;gap:8px;}
+.rk-scard-cancel{flex:1;padding:11px;background:var(--g1);border:1.5px solid var(--g2);
+  border-radius:10px;font-size:13px;font-weight:700;color:var(--g6);cursor:pointer;}
+.rk-scard-ok{flex:2;padding:11px;background:linear-gradient(135deg,#FFD700,#FFA500);
+  border:none;border-radius:10px;font-size:13px;font-weight:800;color:#1a1a2e;cursor:pointer;
+  transition:var(--ease);}
+.rk-scard-ok:active{filter:brightness(.9);}
+.rk-scard-ok:disabled{background:var(--g3);color:var(--g4);cursor:not-allowed;}
+
+.rk-empty{text-align:center;padding:28px 14px;color:var(--g4);font-size:12px;}
+.rk-empty .ei{font-size:28px;margin-bottom:8px;}
+
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-thumb{background:var(--g2);border-radius:100px;}
 </style>
@@ -556,6 +676,7 @@ body{font-family:var(--sans);background:var(--g1);color:var(--g7);
     <div class="clk" id="clkEl">--:--:--</div>
     <div class="speed-label" id="speedLbl">1× 배속</div>
   </div>
+  <button class="rank-btn" onclick="openRanking()" title="순위">🏆</button>
   <button class="settings-btn" onclick="openSettings()" title="설정">⚙️</button>
 </header>
 
@@ -612,7 +733,7 @@ body{font-family:var(--sans);background:var(--g1);color:var(--g7);
   <div class="qgrid">
     <button class="qbtn" onclick="openLoanDlg()"><div class="qi">🏦</div><div class="ql">대출·상환</div></button>
     <button class="qbtn" onclick="gotoId('slistSec')"><div class="qi">📈</div><div class="ql">전체종목</div></button>
-    <button class="qbtn" onclick="gotoId('histSec')"><div class="qi">📋</div><div class="ql">거래내역</div></button>
+    <button class="qbtn" onclick="openRanking()"><div class="qi">🏆</div><div class="ql">순위</div></button>
     <button class="qbtn" onclick="resetGame()"><div class="qi">🔄</div><div class="ql">초기화</div></button>
   </div>
 
@@ -874,6 +995,64 @@ body{font-family:var(--sans);background:var(--g1);color:var(--g7);
 
 <!-- ══ TOAST ══ -->
 <div class="twrap" id="tWrap"></div>
+
+<!-- ══ RANKING SHEET ══ -->
+<div class="rkbg" id="rankingDlg" onclick="handleRkBg(event)">
+  <div class="rksheet">
+    <div class="rk-handle"></div>
+    <div class="rk-hdr">
+      <div class="rk-title">🏆 실시간 명예의 전당</div>
+      <button class="rk-close" onclick="closeRanking()">✕</button>
+    </div>
+    <div class="rk-banner">
+      <div class="rk-banner-icon">🏆</div>
+      <div class="rk-banner-text">
+        <h3>MokStock 글로벌 리더보드</h3>
+        <p>전 세계 투자자들과 실력을 겨뤄보세요!</p>
+      </div>
+    </div>
+    <div class="rk-submit-row">
+      <button class="rk-submit-btn" onclick="openSubmitScore()">📊 내 점수 등록하기</button>
+      <button class="rk-refresh-btn" id="rkRefreshBtn" onclick="fetchRankings(true)" title="새로고침">🔄</button>
+    </div>
+    <div class="rk-tabs">
+      <button class="rk-tab on" id="rktabAsset" onclick="setRkTab('asset',this)">💰 총 자산</button>
+      <button class="rk-tab" id="rktabRate" onclick="setRkTab('rate',this)">📈 수익률</button>
+    </div>
+    <div class="rk-live">
+      <div class="rk-live-dot"></div>
+      <span id="rkLiveText">실시간 업데이트 중…</span>
+    </div>
+    <div class="rk-list" id="rkListEl">
+      <div class="rk-empty"><div class="ei">⏳</div>데이터 불러오는 중…</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCORE SUBMIT DIALOG ══ -->
+<div class="rk-submit-dlg" id="rkSubmitDlg" onclick="handleRkSubmitBg(event)">
+  <div class="rk-submit-card">
+    <div class="rk-scard-title">🎯 점수 등록</div>
+    <div class="rk-scard-sub">닉네임을 입력하고 순위에 등록하세요</div>
+    <div class="rk-stat-grid">
+      <div class="rk-stat-box">
+        <div class="rk-stat-lbl">총 자산</div>
+        <div class="rk-stat-val" id="rkStatAsset">—</div>
+      </div>
+      <div class="rk-stat-box">
+        <div class="rk-stat-lbl">수익률</div>
+        <div class="rk-stat-val" id="rkStatRate">—</div>
+      </div>
+    </div>
+    <input class="rk-nick-inp" id="rkNickInp" type="text"
+      maxlength="20" placeholder="닉네임 입력 (최대 20자)"
+      oninput="validateNick(this)"/>
+    <div class="rk-scard-btns">
+      <button class="rk-scard-cancel" onclick="closeSubmitScore()">취소</button>
+      <button class="rk-scard-ok" id="rkOkBtn" onclick="submitScore()" disabled>등록하기</button>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ═══════ CONSTANTS ═══════ */
@@ -2308,6 +2487,161 @@ function updClock(){
 function updVirtElapsed(){
   const ve=document.getElementById('virtElapsedEl');
   if(ve)ve.textContent=simElapsedStr(S.simSec);
+}
+
+/* ═══════ RANKING SYSTEM ═══════ */
+let _rkData=[];
+let _rkTab='asset';
+let _rkPollId=null;
+let _rkOpen=false;
+
+const RANK_AVATARS=['🦊','🐯','🦁','🐻','🐼','🐸','🦅','🐬','🦋','🐉','🌟','🔥','💎','⚡','🚀'];
+function rkAvatar(nick){
+  // deterministic avatar from nickname
+  let h=0;for(let i=0;i<nick.length;i++)h=(h*31+nick.charCodeAt(i))&0xfffffff;
+  return RANK_AVATARS[h%RANK_AVATARS.length];
+}
+
+async function fetchRankings(manual=false){
+  const btn=document.getElementById('rkRefreshBtn');
+  if(btn){btn.classList.add('spinning');setTimeout(()=>btn.classList.remove('spinning'),600);}
+  try{
+    const res=await fetch('/api/rankings');
+    if(!res.ok)throw new Error('fetch fail');
+    _rkData=await res.json();
+    renderRankingList();
+    const now=new Date();
+    const hh=String(now.getHours()).padStart(2,'0');
+    const mm=String(now.getMinutes()).padStart(2,'0');
+    const ss=String(now.getSeconds()).padStart(2,'0');
+    const lt=document.getElementById('rkLiveText');
+    if(lt)lt.textContent=`${hh}:${mm}:${ss} 업데이트됨 · ${_rkData.length}명 참여`;
+    if(manual)toast('🔄 순위 업데이트 완료','inf','sys');
+  }catch(e){
+    if(manual)toast('⚠️ 순위를 불러올 수 없습니다','warn','warn');
+  }
+}
+
+function renderRankingList(){
+  const container=document.getElementById('rkListEl');
+  if(!container)return;
+  if(!_rkData.length){
+    container.innerHTML=`<div class="rk-empty"><div class="ei">🏆</div>아직 등록된 점수가 없습니다<br>첫 번째 주인공이 되어보세요!</div>`;
+    return;
+  }
+  const sorted=[..._rkData].sort((a,b)=>
+    _rkTab==='asset'?b.total_asset-a.total_asset:b.return_rate-a.return_rate
+  );
+  const frag=document.createDocumentFragment();
+  sorted.slice(0,50).forEach((row,i)=>{
+    const rank=i+1;
+    const medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+    const cls=rank===1?'top1':rank===2?'top2':rank===3?'top3':'';
+    const rCls=rank<=3?`r${rank}`:'';
+    const ratePos=row.return_rate>=0;
+    const div=document.createElement('div');
+    div.className=`rk-item ${cls}`;
+    div.innerHTML=`
+      <div class="rk-rank ${rCls}">${typeof medal==='string'?medal:'#'+rank}</div>
+      <div class="rk-avatar">${rkAvatar(row.nickname)}</div>
+      <div class="rk-info">
+        <div class="rk-nick">${escHtml(row.nickname)}</div>
+        <div class="rk-sub">${fmtAgoFromISO(row.created_at)} 등록</div>
+      </div>
+      <div class="rk-val">
+        <div class="rk-asset">${fmtKRW(row.total_asset)}</div>
+        <div class="rk-rate ${ratePos?'pos':'neg'}">${ratePos?'+':''}${row.return_rate.toFixed(2)}%</div>
+      </div>`;
+    frag.appendChild(div);
+  });
+  container.innerHTML='';
+  container.appendChild(frag);
+}
+
+function setRkTab(tab,btn){
+  _rkTab=tab;
+  document.querySelectorAll('.rk-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderRankingList();
+}
+
+function openRanking(){
+  document.getElementById('rankingDlg').classList.add('open');
+  document.body.style.overflow='hidden';
+  _rkOpen=true;
+  fetchRankings();
+  if(_rkPollId)clearInterval(_rkPollId);
+  _rkPollId=setInterval(()=>{if(_rkOpen)fetchRankings();},15000);
+}
+function closeRanking(){
+  document.getElementById('rankingDlg').classList.remove('open');
+  document.body.style.overflow='';
+  _rkOpen=false;
+  if(_rkPollId){clearInterval(_rkPollId);_rkPollId=null;}
+}
+function handleRkBg(e){if(e.target.id==='rankingDlg')closeRanking();}
+
+function openSubmitScore(){
+  const sv=stockValue(),inv=INIT_CASH+totalLoanBalance();
+  const total=S.cash+sv;
+  const rate=inv>0?(total-inv)/inv*100:0;
+  const statAsset=document.getElementById('rkStatAsset');
+  const statRate=document.getElementById('rkStatRate');
+  if(statAsset)statAsset.textContent=fmtKRW(total);
+  if(statRate){
+    statRate.textContent=(rate>=0?'+':'')+rate.toFixed(2)+'%';
+    statRate.style.color=rate>=0?'var(--up)':'var(--dn)';
+  }
+  const inp=document.getElementById('rkNickInp');
+  if(inp){inp.value='';document.getElementById('rkOkBtn').disabled=true;}
+  document.getElementById('rkSubmitDlg').classList.add('open');
+}
+function closeSubmitScore(){
+  document.getElementById('rkSubmitDlg').classList.remove('open');
+}
+function handleRkSubmitBg(e){if(e.target.id==='rkSubmitDlg')closeSubmitScore();}
+
+function validateNick(inp){
+  document.getElementById('rkOkBtn').disabled=inp.value.trim().length===0;
+}
+
+async function submitScore(){
+  const nick=document.getElementById('rkNickInp').value.trim();
+  if(!nick)return;
+  const btn=document.getElementById('rkOkBtn');
+  btn.disabled=true;
+  btn.textContent='등록 중…';
+  const sv=stockValue(),inv=INIT_CASH+totalLoanBalance();
+  const total=S.cash+sv;
+  const rate=inv>0?(total-inv)/inv*100:0;
+  try{
+    const res=await fetch('/api/rankings',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nickname:nick,total_asset:Math.round(total),return_rate:rate})
+    });
+    if(!res.ok)throw new Error('submit fail');
+    closeSubmitScore();
+    toast('🏆 순위에 등록되었습니다!','ok','sys');
+    fetchRankings(false);
+  }catch(e){
+    toast('⚠️ 등록 실패. 다시 시도해주세요','warn','warn');
+  }finally{
+    btn.disabled=false;
+    btn.textContent='등록하기';
+  }
+}
+
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtAgoFromISO(iso){
+  if(!iso)return '';
+  const ms=Date.now()-new Date(iso).getTime();
+  if(ms<60000)return Math.floor(ms/1000)+'초 전';
+  if(ms<3600000)return Math.floor(ms/60000)+'분 전';
+  if(ms<86400000)return Math.floor(ms/3600000)+'시간 전';
+  return Math.floor(ms/86400000)+'일 전';
 }
 
 /* ═══════ BOOT ═══════ */
